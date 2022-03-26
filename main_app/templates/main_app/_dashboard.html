@@ -1,0 +1,52 @@
+{% load static %}
+
+<div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark text-light">
+    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+        <div class="text-center mt-3">
+            <a href="{% url 'personnel:dashboard' %}" class="nav-link align-middle px-0 ">
+                <img src="{% static 'img/mehrpars-logo.png' %}" width="90" height="90" alt="">
+                <h5 class="mt-2">سامانه مدیریت پرسنل شرکت مهرپارس</h5>
+            </a>
+        </div>
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-center"
+            id="menu">
+            <li class="nav-item">
+
+            </li>
+            <li class="text-start mt-5">
+                <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                    <li class="w-100">
+                        <a href="{% url 'personnel:user_detail' %}" class="nav-link px-0"><i
+                                class="bi bi-person-square"></i> <span
+                                class="d-none d-sm-inline">پروفایل</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0"><i class="bi bi-card-checklist"></i> <span
+                                class="d-none d-sm-inline">لیست درخواست‌ها</span></a>
+                    </li>
+                    <li>
+                        <a href="{% url 'personnel:users' %}" class="nav-link px-0"><i class="bi bi-card-list"></i> <span
+                                class="d-none d-sm-inline">لیست کارمندان</span></a>
+                    </li>
+                    <li>
+                        <a href="{% url 'personnel:contracts' %}" class="nav-link px-0"><i class="bi bi-file-earmark-person"></i> <span
+                                class="d-none d-sm-inline">لیست قراردادها</span></a>
+                    </li>
+                    <li class="dropdown pb-4">
+                        <div class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                             id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-video2"></i><span class="d-none d-sm-inline mx-1">نقش</span>
+                        </div>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                            <li><a class="dropdown-item" href="{% url 'personnel:create_role_form' 'new' %}"><i class="bi bi-person-plus mx-2"></i>ساخت نقش</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'personnel:assign_role_form' %}"><i class="bi bi-person-check mx-2"></i>انتساب
+                                نقش</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+

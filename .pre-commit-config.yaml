@@ -1,0 +1,28 @@
+exclude: ^(main_app|manage.py|requirements|requirements.txt|.*migrations|README.md|Makefile)
+default_stages: [ commit ]
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: no-commit-to-branch
+        args: [ '-b', 'master', '-b', 'production', '-b', 'staging' ]
+      - id: check-yaml
+      - id: end-of-file-fixer
+        stages: [ commit ]
+      - id: trailing-whitespace
+        stages: [ commit ]
+      - id: check-merge-conflict
+      - id: double-quote-string-fixer
+
+  - repo: https://github.com/ecugol/pre-commit-hooks-django
+    rev: v0.4.0
+    hooks:
+      - id: check-untracked-migrations
+      - id: check-unapplied-migrations
+      - id: check-absent-migrations
+
+  - repo: https://github.com/psf/black
+    rev: 21.12b0
+    hooks:
+      - id: black
+        args: [ '--skip-string-normalization', '--line-length', '120' ]

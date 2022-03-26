@@ -1,0 +1,78 @@
+{% load static %}
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'img/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'img/favicon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'img/favicon/safari-pinned-tab.svg' %}" color="#ffffff">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Multiform -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap/dist/css/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}">
+    <!-- Sweet Alert -->
+    <link type="text/css" href="{% static 'vendor/sweetalert2/dist/sweetalert2.min.css' %}" rel="stylesheet">
+
+    <!-- Notyf -->
+    <link type="text/css" href="{% static 'vendor/notyf/notyf.min.css' %}" rel="stylesheet">
+
+    <!-- roles JS -->
+    <link type="text/css" href="{% static 'css/create-role.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/role.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+    <!--  Dashboard CSS  -->
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-icons/font/bootstrap-icons.css' %}">
+
+
+    <!--  Employee CSS  -->
+    <link rel="stylesheet" href="{% static 'css/employees-list.css' %}">
+
+    {% block css %}{% endblock %}
+
+    <title>
+        {% block title %}{% endblock %}
+        | سامانه مهر پارس
+    </title>
+
+</head>
+
+<body>
+<aside class="container-fluid">
+    <div class="row flex-nowrap">
+        {% include 'main_app/_dashboard.html' %}
+        <div class="col py-3">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</aside>
+
+<!-- /.MultiStep Form -->
+<script src="{% static 'js/jquery/dist/jquery.js' %}"></script>
+<script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js"></script>
+<script src="{% static 'js/register.js' %}"></script>
+
+<!-- /Dashboard -->
+<script src="{% static 'bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+{% block js %}{% endblock %}
+
+</body>
+
+</html>

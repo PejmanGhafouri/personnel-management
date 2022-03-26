@@ -1,0 +1,491 @@
+{% extends 'main_app/base.html' %}
+{% load static widget_tweaks %}
+
+{% block title %}ثبت نام{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <!-- MultiStep Form -->
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12">
+                <h1 class="text-center mt-5">فرم ثبت نام</h1>
+                <form action="{% url 'personnel:user_form' %}" id="my-form" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                        {{ form.non_field_errors.as_text }}
+                        </div>
+                    {% endif %}
+                    <!-- progressbar -->
+                    <ul id="progressbar">
+                        <li id="step_1_btn" class="active text-e">اطلاعات فردی</li>
+                        <li id="step_2_btn">مدارک تحصیلی</li>
+                        <li id="step_3_btn">نظام وظیفه</li>
+                        <li id="step_4_btn">وضعیت تاهل</li>
+                        <li id="step_5_btn">آدرس و تماس</li>
+                        <li id="step_6_btn">اطلاعات بانکی</li>
+                    </ul>
+
+                    <!-- fieldsets -->
+                    <!-- Step 1-->
+                    <fieldset id="step_1">
+                        <div class="text-start">
+                            <h2 class="fs-title">اطلاعات فردی</h2>
+                            <h3 class="fs-subtitle">مشخصات فردی خود را با جزئیات کامل وارد کنید</h3>
+                            {{ profile_form.management_form }}
+                            {% for form in profile_form %}
+                                <div class="profile-row card">
+                                    <div class="p-3">
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            {% include 'main_app/_input_vertical.html' with field=user_form.first_name %}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {% include 'main_app/_input_vertical.html' with field=user_form.last_name %}
+                                        </div>
+                                    </div>
+                                    <div class="row  mt-3">
+                                        <div class="col-md-6">
+                                            {% include 'main_app/_input_vertical.html' with field=form.father_name %}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {% include 'main_app/_input_vertical.html' with field=user_form.national_id %}
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center mt-3">
+                                        <div class="col-md-6">
+                                            {% include 'main_app/_input_vertical.html' with field=form.birth_certificate_id %}
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                {% include 'main_app/_input_vertical.html' with field=form.birthdate %}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-check form-check-inline">
+                                                {% include 'main_app/_input_vertical.html' with field=form.gender %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            {% include 'main_app/_input_vertical.html' with field=form.birthdate_province %}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {% include 'main_app/_input_vertical.html' with field=form.birthdate_city %}
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            {% include 'main_app/_input_vertical.html' with field=form.issue_place %}
+                                        </div>
+                                    </div>
+
+                                    <!--Shenasname-->
+                                    <div class="mt-3 pt-3 text-start">
+                                        <h4>بارگذاری صفحات شناسنامه</h4>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    {% include 'main_app/_input_vertical.html' with field=form.first_page_certificate_image %}
+                                                </div>
+                                                <div class="mb-3">
+                                                    {% include 'main_app/_input_vertical.html' with field=form.second_page_certificate_image %}
+                                                </div>
+                                                <div class="mb-3">
+                                                    {% include 'main_app/_input_vertical.html' with field=form.third_page_certificate_image %}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    {% include 'main_app/_input_vertical.html' with field=form.forth_page_certificate_image %}
+                                                </div>
+                                                <div class="mb-3">
+                                                    {% include 'main_app/_input_vertical.html' with field=form.fifth_page_certificate_image %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- National Card-->
+                                    <div class="mt-3 pt-3 text-start">
+                                        <h4>بارگذاری صفحات کارت ملی</h4>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    {% include 'main_app/_input_vertical.html' with field=form.front_identify_card_image %}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    {% include 'main_app/_input_vertical.html' with field=form.back_identify_card_image %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <button type="button" class="next action-button btn-lg">مرحله بعد</button>
+                    </fieldset>
+
+                    <!-- Step 2-->
+                    <fieldset id="step_2">
+
+                        <div class="text-start">
+                            <h2 class="fs-title">مدارک تحصیلی</h2>
+                            <h3 class="fs-subtitle">اطلاعات خود را با جزئیات کامل وارد کنید</h3>
+                            {{ education_form.management_form }}
+                            {% for form in education_form %}
+                                <div class="education-row card mb-2 p-3">
+                                <div class="row justify-content-center ">
+                                    <div class="col-md-6">
+                                        {% include 'main_app/_input_vertical.html' with field=form.level %}
+                                    </div>
+                                    <div class="col-md-6 mt-md-0 mt-3">
+                                        {% include 'main_app/_input_vertical.html' with field=form.field %}
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center mt-4">
+                                    <div class="col-md-6">
+                                        {% include 'main_app/_input_vertical.html' with field=form.graduation_date %}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            {% include 'main_app/_input_vertical.html' with field=form.graduation_image %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            </div>
+                            <button type="button"  class="btn btn-primary add-education-form-row btn-lg mt-2">اضافه کردن مدرک تحصیلی
+                                دیگر
+                            </button>
+                        </div>
+                        <button type="button" class="next action-button btn-lg">مرحله بعد</button>
+                        <button type="button" class="previous action-button-previous btn-lg">مرحله قبل</button>
+
+                    </fieldset>
+
+                    <!-- Step 3-->
+                    <fieldset id="step_3">
+                        <div class="text-start">
+                            <h2 class="fs-title">نظام وظیفه</h2>
+                            {% for form in profile_form %}
+                                <div class="card p-3">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-4 mt-2">
+                                        <div class="form-check">
+                                            {% include 'main_app/_input_vertical.html' with field=form.military_service_status %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            {% include 'main_app/_input_vertical.html' with field=form.military_service_image %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            </div>
+                        </div>
+                        <button type="button" class="next action-button btn-lg">مرحله بعد</button>
+                        <button type="button" class="previous action-button-previous btn-lg">مرحله قبل</button>
+                    </fieldset>
+
+                    <!-- Step 4-->
+                    <fieldset id="step_4">
+                        <div class="text-start">
+                            <h2 class="fs-title">وضعیت تاهل</h2>
+
+                            <div class="row justify-content-center">
+                                <div class="col-md-4">
+                                    {% for form in profile_form %}
+                                        {% include 'main_app/_input_vertical.html' with field=form.martial_status %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="showMarried mt-3 border-bottom p-3" id="M">
+                                {{ spouse_form.management_form }}
+                                {% for form in spouse_form %}
+                                    <div class="spouse-row card mt-3 p-3">
+                                        <h4 class="mt-4">مشخصات همسر</h4>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6 ">
+                                                {% include 'main_app/_input_vertical.html' with field=form.first_name %}
+                                            </div>
+                                            <div class="col-md-6">
+                                                {% include 'main_app/_input_vertical.html' with field=form.last_name %}
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6">
+                                                {% include 'main_app/_input_vertical.html' with field=form.father_name %}
+                                            </div>
+                                            <div class="col-md-6">
+                                                {% include 'main_app/_input_vertical.html' with field=form.national_id %}
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center mt-3">
+                                            <div class="col-md-6">
+                                                {% include 'main_app/_input_vertical.html' with field=form.birth_certificate_id %}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="input-group">
+                                                    {% include 'main_app/_input_vertical.html' with field=form.birthdate %}
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-md-6">
+                                                    {% include 'main_app/_input_vertical.html' with field=form.birthdate_province %}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    {% include 'main_app/_input_vertical.html' with field=form.birthdate_city %}
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-md-6">
+                                                    {% include 'main_app/_input_vertical.html' with field=form.issue_place %}
+                                                </div>
+                                            </div>
+                                            <div class="mt-3 pt-3 text-start">
+                                                <h4>بارگذاری صفحات شناسنامه</h4>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            {% include 'main_app/_input_vertical.html' with field=form.first_page_certificate_image %}
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            {% include 'main_app/_input_vertical.html' with field=form.second_page_certificate_image %}
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            {% include 'main_app/_input_vertical.html' with field=form.third_page_certificate_image %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            {% include 'main_app/_input_vertical.html' with field=form.forth_page_certificate_image %}
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            {% include 'main_app/_input_vertical.html' with field=form.fifth_page_certificate_image %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- National Card-->
+                                            <div class="mt-3 pt-3 text-start">
+                                                <h4>بارگذاری صفحات کارت ملی</h4>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            {% include 'main_app/_input_vertical.html' with field=form.front_identify_card_image %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            {% include 'main_app/_input_vertical.html' with field=form.back_identify_card_image %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary add-spouse-form-row btn-lg mt-2 mb-2">اضافه کردن همسر
+                                        دیگر
+                                    </button>
+                                    <button type="button"  class="btn btn-primary btn-lg" id="add-child">اضافه کردن فرزند
+                                    </button>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Children-->
+                        <div class="showChild mt-3 border-bottom p-3 text-start" id="child">
+                            {{ child_form.management_form }}
+                            {% for form in child_form %}
+                                <div class="child-row card mt-3 p-3">
+                                    <h4>مشخصات فرزند</h4>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6 ">
+                                            {% include 'main_app/_input_vertical.html' with field=form.first_name %}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {% include 'main_app/_input_vertical.html' with field=form.last_name %}
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6 ">
+                                            {% include 'main_app/_input_vertical.html' with field=form.national_id %}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {% include 'main_app/_input_vertical.html' with field=form.birth_certificate_id %}
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center justify-content-between mt-3">
+                                        <div class="col-md-3">
+                                            <div class="input-group">
+                                                {% include 'main_app/_input_vertical.html' with field=form.birthdate %}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                                {% include 'main_app/_input_vertical.html' with field=form.birthdate_province %}
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-md-6">
+                                                {% include 'main_app/_input_vertical.html' with field=form.birthdate_city %}
+                                            </div>
+                                            <div class="col-md-6">
+                                                {% include 'main_app/_input_vertical.html' with field=form.issue_place %}
+                                            </div>
+                                        </div>
+                                        <div class="mt-3 pt-3 text-start">
+                                            <h4>بارگذاری صفحات شناسنامه</h4>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        {% include 'main_app/_input_vertical.html' with field=form.first_page_certificate_image %}
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        {% include 'main_app/_input_vertical.html' with field=form.second_page_certificate_image %}
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        {% include 'main_app/_input_vertical.html' with field=form.third_page_certificate_image %}
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        {% include 'main_app/_input_vertical.html' with field=form.forth_page_certificate_image %}
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        {% include 'main_app/_input_vertical.html' with field=form.fifth_page_certificate_image %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- National Card-->
+                                        <div class="mt-3 pt-3 text-start">
+                                            <h4>بارگذاری صفحات کارت ملی</h4>
+                                            <div class="row ">
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        {% include 'main_app/_input_vertical.html' with field=form.front_identify_card_image %}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        {% include 'main_app/_input_vertical.html' with field=form.back_identify_card_image %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary add-child-form-row btn-lg mt-2 mb-2"> اضافه کردن فرزند
+                                    دیگر
+                                </button>
+                            {% endfor %}
+
+                        </div>
+
+                        <button type="button" class="next action-button btn-lg">مرحله بعد</button>
+                        <button type="button" class="previous action-button-previous btn-lg">مرحله قبل</button>
+                    </fieldset>
+
+                    <!-- Step 5-->
+                    <fieldset id="step-5">
+                        <div class="text-start">
+                            {% for form in profile_form %}
+                                <h2 class="fs-title">مشخصات محل سکونت و تماس</h2>
+                                <div class="address-row card p-3">
+                                <div class="row mt-3 ">
+                                    <div class="col-lg-6" dir="ltr">
+                                        {% include 'main_app/_input_vertical.html' with field=form.province %}
+                                    </div>
+                                    <div class="col-lg-6" dir="ltr">
+                                        {% include 'main_app/_input_vertical.html' with field=form.city %}
+                                    </div>
+                                </div>
+                                <div class="row mt-3 ">
+                                    <div class="col-lg-6" dir="ltr">
+                                        {% include 'main_app/_input_vertical.html' with field=form.postal_code %}
+                                    </div>
+                                    <div class="col-lg-6" dir="ltr">
+                                        {% include 'main_app/_input_vertical.html' with field=user_form.phone_number %}
+                                    </div>
+                                </div>
+                                <div class="row mt-3" dir="ltr">
+                                    <div class="col-lg-6">
+                                        {% include 'main_app/_input_vertical.html' with field=form.telephone %}
+                                    </div>
+                                    <div class="col-lg-6" dir="ltr">
+                                        {% include 'main_app/_input_vertical.html' with field=form.emergency_telephone %}
+                                    </div>
+                                </div>
+                                <div class="row mt-3" dir="ltr">
+                                    <div class="col-lg-6">
+                                        {% include 'main_app/_input_vertical.html' with field=user_form.email %}
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12">
+                                        {% include 'main_app/_input_vertical.html' with field=form.address %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            </div>
+                        </div>
+                        <button type="button" class="next action-button btn-lg">مرحله بعد</button>
+                        <button type="button" class="previous action-button-previous btn-lg">مرحله قبل</button>
+                    </fieldset>
+
+                    <!-- Step 6-->
+                    <fieldset id="step-6">
+
+                        <div class="text-start">
+                            <div class="text-center">
+                                <h2 class="fs-title">مشخصات حساب های بانکی</h2>
+                                <h3 class="fs-subtitle text-danger">ثبت حداقل یک حساب بانک رسالت الزامیست</h3>
+                                {{ bank_form.management_form }}
+                                {% for form in bank_form %}
+                                    <div class="bank-row card mb-2 p-3">
+                                    <div class="text-start">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {% include 'main_app/_input_vertical.html' with field=form.name %}
+                                            </div>
+                                            <div class="col-md-6">
+                                                {% include 'main_app/_input_vertical.html' with field=form.account_number %}
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6">
+                                                {% include 'main_app/_input_vertical.html' with field=form.cart_number %}
+                                            </div>
+                                            <div class="col-md-6" dir="ltr">
+                                                {% include 'main_app/_input_vertical.html' with field=form.shaba_number %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary add-bank-form-row btn-lg mb-2">اضافه کردن بانک دیگر
+                            </button>
+                        </div>
+                        <button onclick="window.location.href={% url 'personnel:user_form' %}" class="btn btn-primary btn-lg">ارسال درخواست</button>
+                        <button type="button" class="previous action-button-previous btn-lg">مرحله قبل</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

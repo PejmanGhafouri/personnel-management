@@ -1,0 +1,85 @@
+{% load static %}
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'img/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'img/favicon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'img/favicon/safari-pinned-tab.svg' %}" color="#ffffff">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap/dist/css/bootstrap.rtl.min.css' %}">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+    <!-- Sweet Alert -->
+    <link type="text/css" href="{% static 'vendor/sweetalert2/dist/sweetalert2.min.css' %}" rel="stylesheet">
+
+    <!-- Notyf -->
+    <link type="text/css" href="{% static 'vendor/notyf/notyf.min.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/volt.css' %}" rel="stylesheet">
+
+    <title>
+        {% block title %}{% endblock %}
+        | سامانه مهر پارس
+    </title>
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+<section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+    <div class="container">
+     <h3 class="text-center p-3 mb-5">
+                       به سامانه مدیریت پرسنل شرکت مهر پارس خوش آمدید!
+                </h3>
+        <div class="row justify-content-center form-bg-image"
+             data-background-lg="{% static 'img/illustrations/signin.svg' %}">
+            <div class="col-12 d-flex align-items-center justify-content-center">
+                <div class="sign-card bg-white shadow rounded border-light p-4 p-lg-5 fmxw-500">
+                    <div class="text-center text-md-center mb-4 mt-md-0">
+                        <h1 class="mb-0 h3">ورود به سامانه</h1>
+                    </div>
+                    {% block tab_content %}{% endblock %}
+                    <div class="d-flex justify-content-center align-items-center mt-4" dir="rtl">
+                                <span class="fw-normal">
+                                    ثبت نام نکردید؟
+                                    <a href="{% url 'personnel:user_form' %}" class="fw-bold">ساخت حساب کاربری</a>
+                                </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Sweet Alerts 2 -->
+<script src="{% static 'vendor/sweetalert2/dist/sweetalert2.all.min.js' %}"></script>
+
+<!-- Smooth scroll -->
+<script src="{% static 'vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js' %}"></script>
+
+<!-- Volt JS -->
+<script src="{% static 'js/volt.js' %}"></script>
+
+<!-- Login JS -->
+<script src="{% static 'js/login.js' %}"></script>
+
+{% block js %}{% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User delete confirm</title>
+</head>
+<body>
+<form method="post">{% csrf_token %}
+    <p>ایا از حذف کاربر  {{ object }}  مطمئن هستید؟</p>
+    <input type="submit" value="حذف" class="btn btn-danger">
+</form>
+</body>
+</html>

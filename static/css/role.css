@@ -1,0 +1,118 @@
+/*custom font*/
+@import url(fontiran.css);
+
+/*Variables*/
+:root {
+    --bs-blue: #2361ce;
+    --bs-indigo: #4f46e5;
+    --bs-purple: #7c3aed;
+    --bs-pink: #ef4683;
+    --bs-red: #e11d48;
+    --bs-orange: #fba918;
+    --bs-yellow: #f3c78e;
+    --bs-green: #10b981;
+    --bs-teal: #1e90ff;
+    --bs-cyan: #63b1bd;
+    --bs-white: #ffffff;
+    --bs-gray: #4b5563;
+    --bs-gray-dark: #1f2937;
+    --bs-gray-100: #f2f4f6;
+    --bs-gray-200: #e5e7eb;
+    --bs-gray-300: #d1d5db;
+    --bs-gray-400: #9ca3af;
+    --bs-gray-500: #6b7280;
+    --bs-gray-600: #4b5563;
+    --bs-gray-700: #374151;
+    --bs-gray-800: #1f2937;
+    --bs-gray-900: #111827;
+    --bs-primary: #1f2937;
+    --bs-secondary: #f0bc74;
+    --bs-tertiary: #31316a;
+    --bs-success: #10b981;
+    --bs-info: #2361ce;
+    --bs-warning: #f3c78e;
+    --bs-danger: #e11d48;
+    --bs-white: #ffffff;
+    --bs-indigo: #4f46e5;
+    --bs-purple: #7c3aed;
+    --bs-yellow-100: #ffeed6;
+    --bs-yellow-200: #f5dbb8;
+    --bs-gray-50: #f9fafb;
+    --bs-gray-100: #f2f4f6;
+    --bs-gray-200: #e5e7eb;
+    --bs-gray-300: #d1d5db;
+    --bs-gray-400: #9ca3af;
+    --bs-gray-500: #6b7280;
+    --bs-gray-600: #4b5563;
+    --bs-gray-700: #374151;
+    --bs-gray-800: #1f2937;
+    --bs-gray-900: #111827;
+    --bs-primary-rgb: 31, 41, 55;
+    --bs-secondary-rgb: 240, 188, 116;
+    --bs-tertiary-rgb: 49, 49, 106;
+    --bs-success-rgb: 16, 185, 129;
+    --bs-info-rgb: 35, 97, 206;
+    --bs-warning-rgb: 243, 199, 142;
+    --bs-danger-rgb: 225, 29, 72;
+    --bs-white-rgb: 255, 255, 255;
+    --bs-indigo-rgb: 79, 70, 229;
+    --bs-purple-rgb: 124, 58, 237;
+    --bs-yellow-100-rgb: 255, 238, 214;
+    --bs-yellow-200-rgb: 245, 219, 184;
+    --bs-gray-50-rgb: 249, 250, 251;
+    --bs-gray-100-rgb: 242, 244, 246;
+    --bs-gray-200-rgb: 229, 231, 235;
+    --bs-gray-300-rgb: 209, 213, 219;
+    --bs-gray-400-rgb: 156, 163, 175;
+    --bs-gray-500-rgb: 107, 114, 128;
+    --bs-gray-600-rgb: 75, 85, 99;
+    --bs-gray-700-rgb: 55, 65, 81;
+    --bs-gray-800-rgb: 31, 41, 55;
+    --bs-gray-900-rgb: 17, 24, 39;
+    --bs-white-rgb: 255, 255, 255;
+    --bs-black-rgb: 17, 24, 39;
+    --bs-body-color-rgb: 55, 65, 81;
+    --bs-body-bg-rgb: 242, 244, 246;
+    --bs-font-IRan-sans: IRANSans, sans-serif !important;
+    --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+    --bs-body-font-family: var(--bs-font-IRan-sans);
+    --bs-body-font-size: 1rem;
+    --bs-body-font-weight: 400;
+    --bs-body-line-height: 1.5;
+    --bs-body-color: #374151;
+    --bs-body-bg: #f2f4f6;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        scroll-behavior: smooth;
+    }
+}
+
+body {
+    margin: 0;
+    height: 100vw;
+    font-family: var(--bs-body-font-family);
+    font-size: var(--bs-body-font-size);
+    font-weight: var(--bs-body-font-weight);
+    line-height: var(--bs-body-line-height);
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    text-align: center;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(17, 24, 39, 0);
+}
+
+.my-form {
+    background: white;
+    border: 0 none;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    width: 80%;
+    margin: 0 10%;
+}
+
+.btn-primary {
+    background: var(--bs-gray-800);
+}

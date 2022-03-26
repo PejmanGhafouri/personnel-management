@@ -1,0 +1,33 @@
+{% extends 'user/base_auth.html' %}
+{% load widget_tweaks static%}
+
+{% block title %}تایید کد ارسالی{% endblock %}
+
+{% block tab_content %}
+    <form action="{% url 'user:confirm' %}" method="post" class="mt-4">
+        {% if form.non_field_errors %}
+			<div class="alert alert-danger" role="alert">
+				{{form.non_field_errors.as_text}}
+			</div>
+		{% endif %}
+        {% csrf_token %}
+        <div class="form-group">
+            <!-- Form -->
+            <div class="form-group mb-4 text-end">
+                <div class="d-flex justify-content-end align-items-center">
+                </div>
+              {% for field in form %}
+                    {% include 'main_app/_input_vertical.html' with field=field %}
+              {% endfor %}
+            </div>
+            <!-- End of Form -->
+            <button onclick="window.location.href={% url 'user:send-sms' %}" class="btn btn-outline-danger w-100 mb-2" id="resend">
+                ارسال مجدد کد
+                  <span id="countdown"></span>
+            </button>
+        </div>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-gray-800 fs-6">تایید کد</button>
+        </div>
+    </form>
+{% endblock %}

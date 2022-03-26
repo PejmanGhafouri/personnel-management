@@ -1,0 +1,41 @@
+{% extends 'main_app/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="fw-bold mt-5">لیست کارمندان</h2>
+        <div class="card shadow mt-3">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">نام و نام خانوادگی</th>
+                            <th scope="col">کد ملی</th>
+                            <th scope="col">شماره پرسنلی</th>
+                            <th scope="col">وضعیت قرارداد</th>
+                            <th colspan="2" scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in object_list %}
+                            <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ user.get_full_name}}</td>
+                            <td>{{ user.national_id }}</td>
+                            <td>1234</td>
+                            <td>تایید شده</td>
+                            <td><a class="badge" href="{% url 'personnel:users_detail' user.id  %}">ورود به پروفایل</a></td>
+                            <td><a class="badge" href="#">ورود به قرارداد</a></td>
+                        {% endfor %}
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

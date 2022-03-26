@@ -1,0 +1,522 @@
+{% extends 'main_app/base.html' %}
+{% load static widget_tweaks %}
+
+{% block title %}پروفایل{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <!-- MultiStep Form -->
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12">
+                <h1 class="text-center mt-5">پروفایل</h1>
+                <div id="my-form">
+                    <!-- progressbar -->
+                    <ul id="progressbar">
+                        <li id="step_1_btn" class="active text-e">اطلاعات فردی</li>
+                        <li id="step_2_btn">مدارک تحصیلی</li>
+                        <li id="step_3_btn">نظام وظیفه</li>
+                        <li id="step_4_btn">وضعیت تاهل</li>
+                        <li id="step_5_btn">آدرس و تماس</li>
+                        <li id="step_6_btn">اطلاعات بانکی</li>
+                    </ul>
+
+                    <!-- fieldsets -->
+                    <!-- Step 1-->
+                    <fieldset id="step_1">
+                        <div class="text-start">
+                            <h2 class="fs-title">اطلاعات فردی {{ object.get_full_name }}</h2>
+                            <div class="profile-row card">
+                                <div class="p-3">
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">نام</label>
+                                            <h6>{{ object.first_name }}</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">نام خانوادگی</label>
+                                            <h6>{{ object.last_name }}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row  mt-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">نام پدر</label>
+                                            <h6>{{ profiles.father_name }}</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">شماره ملی</label>
+                                            <h6>{{ object.national_id }}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center mt-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">شماره شناسنامه</label>
+                                            <h6>{{ profiles.birth_certificate_id }}</h6>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">تاریخ تولد</label>
+                                            <h6>{{ profiles.birthdate }}</h6>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-label">جنسیت</label>
+                                                <h6>{{ profiles.get_gender_display }}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">استان محل تولد</label>
+                                            <h6>{{ profiles.birthdate_province }}</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">شهر محل تولد</label>
+                                            <h6>{{ profiles.birthdate_city }}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">محل صدور شناسنامه</label>
+                                            <h6>{{ profiles.issue_place }}</h6>
+                                        </div>
+                                    </div>
+
+                                    <!--Shenasname-->
+                                    <div class="mt-3 pt-3 text-start">
+                                        <h4>بارگذاری صفحات شناسنامه</h4>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">تصویر صفحه اول شناسنامه</label>
+                                                    <h6>{{ profiles.first_page_certificate_image }}</h6>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">تصویر صفحه دوم شناسنامه</label>
+                                                    <h6>{{ profiles.second_page_certificate_image }}</h6>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">تصویر صفحه سوم شناسنامه</label>
+                                                    <h6>{{ profiles.third_page_certificate_image }}</h6>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">تصویر صفحه چهارم شناسنامه</label>
+                                                    <h6>{{ profiles.forth_page_certificate_image }}</h6>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">تصویر صفحه پنجم شناسنامه</label>
+                                                    <h6>{{ profiles.fifth_page_certificate_image }}</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- National Card-->
+                                    <div class="mt-3 pt-3 text-start">
+                                        <h4>بارگذاری صفحات کارت ملی</h4>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">تصویر صفحه اول کارت ملی</label>
+                                                    <h6>{{ profiles.front_identify_card_image }}</h6>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">تصویر صفحه دوم کارت ملی</label>
+                                                    <h6>{{ profiles.back_identify_card_image }}</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="next action-button btn-lg">مرحله بعد</button>
+                    </fieldset>
+
+                    <!-- Step 2-->
+                    <fieldset id="step_2">
+
+                        <div class="text-start">
+                            <h2 class="fs-title">مدارک تحصیلی</h2>
+                            {% for educations in educations %}
+                                <div class="education-row card mb-2 p-3">
+                                    <div class="row justify-content-center ">
+                                        <div class="col-md-6">
+                                            <label class="form-label">سطح تحصیلات</label>
+                                            <h6>{{ educations.get_level_display }}</h6>
+                                        </div>
+                                        <div class="col-md-6 mt-md-0 mt-3">
+                                            <label class="form-label">رشته تحصیلی</label>
+
+                                            <h6>{{ educations.get_field_display }}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center mt-4">
+                                        <div class="col-md-6">
+                                            <label class="form-label">تاریخ فارغ التحصیلی</label>
+                                            <h6>{{ educations.graduation_date }}</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">تصویر مدرک فارغ التحصیلی</label>
+
+                                                <h6>{{ educations.graduation_image }}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <button type="button" class="next action-button btn-lg">مرحله بعد</button>
+                        <button type="button" class="previous action-button-previous btn-lg">مرحله قبل</button>
+
+                    </fieldset>
+
+                    <!-- Step 3-->
+                    <fieldset id="step_3">
+                        <div class="text-start">
+                            <h2 class="fs-title">نظام وظیفه</h2>
+                            <div class="card p-3">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-4 mt-2">
+                                        <div class="form-check">
+                                            <label class="form-label">وضعیت نظام وظیفه</label>
+                                            <h6>{{ profiles.get_military_service_status_display }}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">تصویر کارت پایان خدمت یا گواهی معافیت</label>
+                                            <h6>{{ profiles.military_service_image }}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="next action-button btn-lg">مرحله بعد</button>
+                        <button type="button" class="previous action-button-previous btn-lg">مرحله قبل</button>
+                    </fieldset>
+
+                    <!-- Step 4-->
+                    <fieldset id="step_4">
+                        <div class="text-start">
+                            <h2 class="fs-title">وضعیت تاهل</h2>
+                            <div class="row justify-content-center">
+                                <div class="col-md-4">
+                                    <label class="form-label">وضعیت تاهل</label>
+                                    <h6 class="text-center">{{ profiles.get_martial_status_display }}</h6>
+                                </div>
+                            </div>
+                            {% if user.profiles.martial_status == user.profiles.MartialStatus.MARRIED %}
+                                {% for spouses in spouses %}
+                                    <div class=" mt-3 border-bottom p-3" id="M">
+                                    <div class="spouse-row card mt-3 p-3">
+                                        <h4 class="mt-4">مشخصات همسر</h4>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6 ">
+                                                <label class="form-label">نام</label>
+                                                <h6>{{ spouses.first_name }}</h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">نام خانوادگی</label>
+                                                <h6>{{ spouses.last_name }}</h6>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">نام پدر</label>
+                                                <h6>{{ spouses.father_name }}</h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">شماره ملی</label>
+                                                <h6>{{ spouses.national_id }}</h6>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center mt-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label">شماره شناسنامه</label>
+                                                <h6>{{ spouses.birth_certificate_id }}</h6>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="form-label">تاریخ تولد</label>
+                                                <h6>{{ spouses.birthdate }}</h6>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">استان محل تولد</label>
+                                                    <h6>{{ spouses.birthdate_province }}</h6>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">شهر محل تولد</label>
+                                                    <h6>{{ spouses.birthdate_city }}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">محل صدور شناسنامه</label>
+                                                    <h6>{{ spouses.issue_place }}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="mt-3 pt-3 text-start">
+                                                <h4>بارگذاری صفحات شناسنامه</h4>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">تصویر صفحه اول شناسنامه</label>
+                                                            <h6>{{ spouses.first_page_certificate_image }}</h6>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">تصویر صفحه دوم شناسنامه</label>
+                                                            <h6>{{ spouses.second_page_certificate_image }}</h6></div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">تصویر صفحه سوم شناسنامه</label>
+                                                            <h6>{{ spouses.third_page_certificate_image }}</h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">تصویر صفحه چهارم شناسنامه</label>
+                                                            <h6>{{ spouses.forth_page_certificate_image }}</h6>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">تصویر صفحه پنجم شناسنامه</label>
+                                                            <h6>{{ spouses.fifth_page_certificate_image }}</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- National Card-->
+                                            <div class="mt-3 pt-3 text-start">
+                                                <h4>بارگذاری صفحات کارت ملی</h4>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">تصویر صفحه اول کارت ملی</label>
+                                                            <h6>{{ spouses.front_identify_card_image }}</h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">تصویر صفحه دوم کارت ملی</label>
+                                                            <h6>{{ spouses.back_identify_card_image }}</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        {% if user.children %}
+                            <!-- Children-->
+                            <div class=" mt-3 border-bottom p-3 text-start" id="child">
+                                {% for children in children %}
+                                    <div class="child-row card mt-3 p-3">
+                                        <h4>مشخصات فرزند</h4>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6 ">
+                                                <label class="form-label">نام</label>
+                                                <h6>{{ children.first_name }}</h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">نام خانوادگی</label>
+                                                <h6>{{ children.last_name }}</h6>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6 ">
+                                                <label class="form-label">شماره ملی</label>
+                                                <h6>{{ children.national_id }}</h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">شماره شناسنامه</label>
+                                                <h6>{{ children.birth_certificate_id }}</h6>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center justify-content-between mt-3">
+                                            <div class="col-md-3">
+                                                <label class="form-label">تاریخ تولد</label>
+                                                <h6>{{ children.birthdate }}</h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">استان محل تولد</label>
+                                                <h6>{{ children.birthdate_province }}</h6>
+                                            </div>
+
+                                            <div class="row mt-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">شهر محل تولد</label>
+                                                    <h6>{{ children.birthdate_city }}</h6>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">محل صدور شناسنامه</label>
+                                                    <h6>{{ children.issue_place }}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="mt-3 pt-3 text-start">
+                                                <h4>بارگذاری صفحات شناسنامه</h4>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">تصویر صفحه اول شناسنامه</label>
+                                                            <h6>{{ children.first_page_certificate_image }}</h6>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">تصویر صفحه دوم شناسنامه</label>
+                                                            <h6>{{ children.second_page_certificate_image }}</h6>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">تصویر صفحه سوم شناسنامه</label>
+                                                            <h6>{{ children.third_page_certificate_image }}</h6>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">تصویر صفحه چهارم شناسنامه</label>
+                                                            <h6>{{ children.forth_page_certificate_image }}</h6>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">تصویر صفحه پنجم شناسنامه</label>
+                                                            <h6>{{ children.fifth_page_certificate_image }}</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- National Card-->
+                                            <div class="mt-3 pt-3 text-start">
+                                                <h4>بارگذاری صفحات کارت ملی</h4>
+                                                <div class="row ">
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">تصویر صفحه اول کارت ملی</label>
+                                                            <h6>{{ children.front_identify_card_image }}</h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">تصویر صفحه دوم کارت ملی</label>
+                                                            <h6>{{ children.back_identify_card_image }}</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <button type="button" class="next action-button btn-lg">مرحله بعد</button>
+                        <button type="button" class="previous action-button-previous btn-lg">مرحله قبل</button>
+                    </fieldset>
+
+                    <!-- Step 5-->
+                    <fieldset id="step-5">
+                        <div class="text-start">
+                            <h2 class="fs-title">مشخصات محل سکونت و تماس</h2>
+                            <div class="address-row card p-3">
+                                <div class="row mt-3 ">
+                                    <div class="col-lg-6" dir="ltr">
+                                        <label class="form-label">استان</label>
+                                        <h6>{{ profiles.province }}</h6>
+                                    </div>
+                                    <div class="col-lg-6" dir="ltr">
+                                        <label class="form-label">شهر</label>
+                                        <h6>{{ profiles.city }}</h6>
+                                    </div>
+                                </div>
+                                <div class="row mt-3 ">
+                                    <div class="col-lg-6" dir="ltr">
+                                        <label class="form-label">کد پستی</label>
+                                        <h6>{{ profiles.postal_code }}</h6>
+                                    </div>
+                                    <div class="col-lg-6" dir="ltr">
+                                        <label class="form-label">شماره همراه</label>
+                                        <h6>{{ object.phone_number }}</h6>
+                                    </div>
+                                </div>
+                                <div class="row mt-3" dir="ltr">
+                                    <div class="col-lg-6">
+                                        <label class="form-label">تلفن</label>
+                                        <h6>{{ profiles.telephone }}</h6>
+                                    </div>
+                                    <div class="col-lg-6" dir="ltr">
+                                        <label class="form-label">تلفن ضروری</label>
+                                        <h6>{{ profiles.emergency_telephone }}</h6>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-lg-6">
+                                        <label class="form-label">ایمیل</label>
+                                        <h6>{{ object.email }}</h6>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12">
+                                        <label class="form-label">ادرس</label>
+                                        <h6>{{ profiles.address }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="next action-button btn-lg">مرحله بعد</button>
+                        <button type="button" class="previous action-button-previous btn-lg">مرحله قبل</button>
+                    </fieldset>
+
+                    <!-- Step 6-->
+                    <fieldset id="step-6">
+
+                        <div class="text-start">
+                            <div class="text-center">
+                                <h2 class="fs-title">مشخصات حساب های بانکی</h2>
+                                {% for banks in banks %}
+                                    <div class="bank-row card mb-2 p-3">
+                                        <div class="text-start">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">نام بانک</label>
+                                                    <h6>{{ banks.get_name_display }}</h6>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">شماره حساب</label>
+                                                    <h6>{{ banks.account_number }}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">شماره کارت</label>
+                                                    <h6>{{ banks.cart_number }}</h6>
+                                                </div>
+                                                <div class="col-md-6" dir="ltr">
+                                                    <label class="form-label">شماره شبا</label>
+                                                    <h6>{{ banks.shaba_number }}</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button class="btn btn-primary btn-lg mt-3 m-2">ارسال درخواست ویرایش</button>
+                            <button class="btn btn-primary btn-lg mt-3 m-2">آرشیو</button>
+                            <button class="btn btn-primary btn-lg mt-3 m-2">حذف</button>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

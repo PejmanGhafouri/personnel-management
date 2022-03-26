@@ -1,0 +1,110 @@
+{% extends 'main_app/base.html' %}
+{% load static widget_tweaks %}
+
+{% block title %}فرم تنظیم قرارداد{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12">
+                <h1 class="text-center mt-5">فرم تنظیم قرارداد </h1>
+                <form action="{% url 'personnel:contracts_form' %}" id="my-form" method="POST"
+                      enctype="multipart/form-data">
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                        {{ form.non_field_errors.as_text }}
+                    {% endif %}
+                    {% csrf_token %}
+                    <fieldset id="step_1">
+                        <div class="text-start">
+                            <h2 class="fs-title">اطلاعات قراردادی</h2>
+                            <h3 class="fs-subtitle">مشخصات قراردادی پرسنل مورد نظر با جزئیات کامل وارد کنید</h3>
+                            <div class="card">
+                                <div class="row text-start mt-3">
+                                    <div class="col-md-6">
+                                        {% include 'main_app/_input_vertical.html' with field=form.user %}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {% include 'main_app/_input_vertical.html' with field=form.personnel_id %}
+                                    </div>
+                                </div>
+                                <div class="row text-start mt-3">
+                                    <div class="col-md-6">
+                                        {% include 'main_app/_input_vertical.html' with field=form.term %}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {% include 'main_app/_input_vertical.html' with field=form.contract_type %}
+                                    </div>
+                                </div>
+                                <div class="row text-start align-items-center mt-3">
+                                    <div class="col-md-6">
+                                        {% include 'main_app/_input_vertical.html' with field=form.money_obligation %}
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            {% include 'main_app/_input_vertical.html' with field=form.start_date %}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            {% include 'main_app/_input_vertical.html' with field=form.end_date %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row text-start mt-3">
+                                    <div class="col-md-6">
+                                        {% include 'main_app/_input_vertical.html' with field=form.minimum_working_hour %}
+                                    </div>
+                                </div>
+
+                                <!--Insurance-->
+                                <div class="mt-3 pt-3 text-start">
+                                    <h4>مشخصات بیمه ای</h4>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                {% include 'main_app/_input_vertical.html' with field=form.insurance_name %}
+                                            </div>
+                                            <div class="mb-3">
+                                                {% include 'main_app/_input_vertical.html' with field=form.insurance_branch_number %}
+
+                                            </div>
+                                            <div class="mb-3">
+                                                {% include 'main_app/_input_vertical.html' with field=form.insurance_city %}
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                {% include 'main_app/_input_vertical.html' with field=form.insurance_number %}
+                                            </div>
+                                            <div class="mb-3">
+                                                {% include 'main_app/_input_vertical.html' with field=form.insurance_province   %}
+                                            </div>
+                                            <div class="mb-3">
+                                                {% include 'main_app/_input_vertical.html' with field=form.insurance_status   %}
+                                            </div>
+                                        </div>
+                                        <div class="mt-3 pt-3 text-start">
+                                            <h4>وضعیت قرارداد</h4>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        {% include 'main_app/_input_vertical.html' with field=form.status %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-lg mt-3">ارسال درخواست</button>
+                    </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

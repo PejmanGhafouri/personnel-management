@@ -1,0 +1,126 @@
+{% extends 'main_app/base.html' %}
+{% load static widget_tweaks %}
+
+{% block title %}فرم نمایش قرارداد{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12">
+                <h1 class="text-center mt-5">فرم نمایش قرارداد </h1>
+                <div id="my-form">
+                    {% csrf_token %}
+                    <fieldset id="step_1">
+                        <div class="text-start">
+                            <h2 class="fs-title">اطلاعات قراردادی {{ object.user }}</h2>
+                            <div class="card p-3">
+                                <div class="row text-start mt-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">کاربر</label>
+                                        <h6>{{ object.user }} </h6>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">شماره پرسنلی</label>
+                                        <h6>{{ object.personnel_id }}</h6>
+                                    </div>
+                                </div>
+                                <div class="row text-start mt-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label"> مدت قرارداد</label>
+                                        <h6>{{ object.get_term_display }}</h6></div>
+                                    <div class="col-md-6">
+                                        <label class="form-label"> نوع قرارداد</label>
+                                        <h6>{{ object.get_contract_type_display }}</h6>
+                                    </div>
+                                </div>
+                                <div class="row text-start align-items-center mt-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">تعهد مالی</label>
+
+                                        <h6>{{ object.money_obligation }}</h6></div>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <label class="form-label"> تاریخ شروع</label>
+
+                                            <h6>{{ object.start_date }}</h6></div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <label class="form-label"> تاریخ پایان</label>
+
+                                            <h6>{{ object.end_date }}</h6></div>
+                                    </div>
+                                </div>
+                                {% if contract.contract_type == contract.Type.PART_TIME %}
+                                    <div class="row text-start mt-3">
+                                        <div class="col-md-6">
+
+                                            <label class="form-label">حداقل ساعت کاری</label>
+
+                                            <h6>{{ object.minimum_working_hour }}</h6>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <hr>
+                                <!--Insurance-->
+                                <div class="mb-2 mt-2 text-start">
+                                    <h4>مشخصات بیمه ای</h4>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">نام سازمان بیمه </label>
+
+                                                <h6>{{ object.get_insurance_name_display }}</h6></div>
+                                            <div class="mb-3">
+                                                <label class="form-label">شماره شعبه </label>
+
+                                                <h6>{{ object.insurance_branch_number }}</h6>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">شهر </label>
+
+                                                <h6>{{ object.insurance_city }}</h6></div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">شماره بیمه</label>
+
+                                                <h6>{{ object.insurance_number }}</h6></div>
+                                            <div class="mb-3">
+                                                <label class="form-label">استان</label>
+
+                                                <h6>{{ object.insurance_province }}</h6></div>
+                                            <div class="mb-3">
+                                                <label class="form-label">وضعیت بیمه</label>
+
+                                                <h6>{{ object.get_insurance_status_display }}</h6></div>
+                                        </div>
+                                        <hr>
+                                        <div class="mb-2 mt-2 text-start">
+                                            <h4>وضعیت قرارداد</h4>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <h6>{{ object.get_status_display }}</h6></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button class="btn btn-primary btn-lg mt-3 m-2">ارسال درخواست ویرایش</button>
+                            <button class="btn btn-primary btn-lg mt-3 m-2">تنظیم قرارداد جدید</button>
+                            <button class="btn btn-primary btn-lg mt-3 m-2">آرشیو</button>
+                            <button class="btn btn-primary btn-lg mt-3 m-2">حذف</button>
+                        </div>
+                    </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

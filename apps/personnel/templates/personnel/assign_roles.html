@@ -1,0 +1,38 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %}انتساب نقش پرسنل {% endblock %}
+
+{% block content %}
+    <body>
+    <div class="container">
+        <h1 class="mt-5">انتساب نقش</h1>
+        <form action="{% url 'personnel:assign_role_form' %}" id="my-form" method="POST"
+              enctype="multipart/form-data" class="my-form mt-5">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                {{ form.non_field_errors.as_text }}
+            {% endif %}
+        <div class="card">
+            <div class="row justify-content-center">
+                <div class="col-6 text-start">
+                    <div class="form-label mt-3 fw-bold fs-4 mt-8">انتخاب نقش</div>
+                    {% include 'main_app/_input_vertical.html' with field=form.role_titles %}
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-6 text-start">
+                    <div class="form-label mt-3 fw-bold fs-4">پرسنل</div>
+                    {% include 'main_app/_input_vertical.html' with field=form.users %}
+                </div>
+            </div>
+        </div>
+            <button class="btn btn-primary mt-3">ذخیره</button>
+            </div>
+
+        </form>
+    </div>
+    </body>
+
+{% endblock %}

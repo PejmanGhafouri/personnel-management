@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contracts</title>
+</head>
+<body>
+<h2></h2>
+{% for object in object_list %}
+    {{ object.personnel_id }}
+    {{ object.start_date }}
+    {{ object.end_date }}
+    {{ object.insurance_city }}
+{% endfor %}
+</body>
+</html>
